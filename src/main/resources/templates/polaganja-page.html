@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Полагања</title>
+    <link rel="stylesheet" th:href="@{/main.css}"/>
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/sn-logopng.png}"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+
+<header>
+    <div class="logo-div">
+        <img src="../images/logo.png" alt="logo" class="logo">
+    </div>
+    <ul class="ul-header">
+        <li><a href="/studentController">КАЛЕНДАР</a></li>
+        <li><a href="/studentController/polaganjaPage">ПОЛАГАЊА</a></li>
+        <li><a href="/studentController/predmetiPage">ПРЕДМЕТИ</a></li>
+        <li><a href="/studentController/rasporedPage">РАСПОРЕД</a></li>
+        <li class="last-li"><a href="/studentController/mojProfilPage">МОЈ ПРОФИЛ</a></li>
+    </ul>
+</header>
+
+<section class="section_tabela">
+
+    <table class="tabela">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Датум</th>
+            <th>Предмет</th>
+            <th>Сесија</th>
+            <th>Тип</th>
+            <th>Начин</th>
+            <th>Поени</th>
+            <th>Положен</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Идни</td>
+            <td>20.06.2021</td>
+            <td>Алгоритми и Податочни Структури</td>
+            <td>Јунска</td>
+            <td>Теорија</td>
+            <td>Online</td>
+            <td>-</td>
+            <td><i class='far fa-circle empty_icon'></i></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <table class="tabela">
+        <tbody>
+        <tr>
+            <td>Минати</td>
+            <td>04.02.2021</td>
+            <td>Компјутерски Мрежи и Безбедност</td>
+            <td>Јануарска</td>
+            <td>Теорија</td>
+            <td>Online</td>
+            <td>59</td>
+            <td><i class='fas fa-check-circle check_icon'></i></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>28.01.2021</td>
+            <td>Оперативни Системи</td>
+            <td>Јануарска</td>
+            <td>Задачи</td>
+            <td>Online</td>
+            <td>37</td>
+            <td><i class='fas fa-times-circle cross_icon'></i></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>

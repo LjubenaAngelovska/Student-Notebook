@@ -46,10 +46,11 @@ header {
     text-decoration: none;
     font-size: 15px;
     color: #FEFEFE;
+    padding: 10px;
 }
 
 .last-li {
-    margin-left: 300px;
+    margin-left: 100px;
 }
 
 .ul-header li:hover {
@@ -244,3 +245,78 @@ main {
     cursor: pointer;
     color: #1E4B60;
 }
+
+.check_icon {
+    font-size: 30px;
+    color: #59B83C;
+}
+
+.cross_icon {
+    font-size: 30px;
+    color: #C6302C;
+}
+
+.empty_icon {
+    font-size: 30px;
+    color: #FFDE00;
+}
+
+.section_tabela {
+    margin-top: 20px;
+}
+
+.tabela_predmeti {
+    margin-left: 3em;
+}
+
+.tabela, .tabela_predmeti {
+    border-collapse: collapse;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.tabela th, .tabela_predmeti th {
+    background: #9FC1D6;
+    border: #9FC1D6 !important;
+    text-align: left;
+}
+
+.tabela td, .tabela th, .tabela_predmeti td, .tabela_predmeti th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tabela tr, .tabela_predmeti tr {
+    height: 3em;
+}
+
+.tabela tr:nth-child(even), .tabela_predmeti tr:nth-child(even) {
+    background: #E6E6E6;
+}
+
+.tabela tr:nth-child(odd), .tabela_predmeti tr:nth-child(odd) {
+    background: #F7F7F7;
+}
+
+.tabela tr td:first-child {
+    background: #9FC1D6;
+    border: #9FC1D6 !important;
+    width: 5em;
+}
+
+.tabela tr td:nth-child(2) {
+    width: 5em;
+}
+
+.tabela tr td:nth-child(3) {
+    width: 22em;
+}
+
+.tabela tr td:nth-child(4), .tabela tr td:nth-child(5), .tabela tr td:nth-child(6) {
+    width: 6em;
+}
+
+.tabela tr td:nth-child(7), .tabela tr td:nth-child(8) {
+    text-align: center;
+}
+
