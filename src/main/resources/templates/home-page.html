@@ -5,10 +5,12 @@
     <title>Календар</title>
     <link rel="stylesheet" th:href="@{/main.css}"/>
     <link rel="shortcut icon" type="image/png" th:href="@{/img/sn-logopng.png}"/>
+    <script src="javascript.js" rel="stylesheet"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
 <header>
+
     <div class="logo-div">
         <img src="../images/logo.png" alt="logo" class="logo">
     </div>
@@ -102,14 +104,18 @@
 
 
     <div class="desen_content">
-        <div class="add_menu">
-            <div class="div_dodadi"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Полагање</span></div>
-            <div class="div_dodadi"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Предавање</span></div>
-            <div class="div_dodadi"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Домашно</span></div>
-            <div class="div_dodadi"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Забелешка</span></div>
-        </div>
-    </div>
 
+        <div class="add_menu" id="add_menu">
+            <div class="div_dodadi" id="dodadiPolaganje"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Полагање</span></div>
+            <div class="div_dodadi" id="dodadiPredavanje"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Предавање</span></div>
+            <div class="div_dodadi" id="dodadiDomasno"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Домашно</span></div>
+            <div class="div_dodadi" id="dodadiZabeleska"><i class='fas fa-plus-circle plus_icon' style='font-size:30px'></i><span>Забелешка</span></div>
+        </div>
+
+        <div class="vtor_desen_content invisiblemenu" id="vtor_desen_content">
+        </div>
+
+    </div>
 </section>
 
 

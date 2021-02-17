@@ -81,6 +81,95 @@ section::after {
     float: right;
 }
 
+.vtor_desen_content {
+    width: 20em;
+    padding: 20px;
+    float: right;
+    position: absolute;
+    top: 120px;
+}
+
+.second_menu {
+    background-color: #FEFEFE;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 2em;
+    line-height: 1.7;
+    height: 430px;
+}
+
+.second_menu > div {
+    margin-bottom: 1em;
+}
+
+.second_menu input[type="text"], .second_menu input[type="date"] {
+    width: 200px;
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid #bebebe;
+    font-family:inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.second_menu select {
+    width: 100%;
+    padding:10px;
+    border-radius:10px;
+    cursor: pointer;
+    margin-top: 0.5em;
+}
+
+.rbt {
+    font-size: small;
+}
+
+.second_menu input[type="radio"] {
+    vertical-align: text-bottom;
+}
+
+.second_menu input[type="range"] {
+    width: 80%;
+}
+
+.rbt label {
+    vertical-align: middle;
+}
+
+#vnesi_polag {
+    display:inline-block;
+    padding:0.7em 1.4em;
+    margin:1em 0 0 1.7em;
+    border-radius:0.3em;
+    box-sizing: border-box;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-weight:400;
+    color:#FFFFFF;
+    background-color: #375ed2;
+    text-align:center;
+    position:relative;
+    cursor: pointer;
+}
+
+#vnesi_polag:active {
+    top:0.1em;
+}
+
+#vnesi_polag:hover {
+    background-color: #264bbf;
+}
+
+.rbt1, .slider1 {
+    margin-top: 3em;
+}
+
+@media all and (max-width:30em){
+    #vnesi_polag {
+        display:block;
+        margin:0.4em auto;
+    }
+}
+
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
     nav, .lev_content {
@@ -217,6 +306,7 @@ main {
 .add_menu {
     padding-top: 5em;
     padding-left: 2em;
+    z-index: 2;
 }
 
 .plus_icon {
@@ -320,3 +410,7 @@ main {
     text-align: center;
 }
 
+.invisiblemenu {
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
