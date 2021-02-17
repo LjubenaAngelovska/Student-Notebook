@@ -39,23 +39,23 @@ const vnesi_polaganje_html = `<div class="second_menu" id="second_menu">
                 </div>
 
                 <div>
-                    <button id="vnesi_polag" onclick="vnesiPolagFunc()">Внеси полагање</button>
+                    <button id="vnesi_polag" class="vnesi_button" onclick="vnesiPolagFunc()">Внеси полагање</button>
                 </div>
 
-            </div>`;
-
+            </div>
+`;
 
 const vnesi_predavanje_html = `<div class="second_menu" id="second_menu">
 
                 <div>
-                    <label for="predmet_polag">Предмет
-                        <input type="text" id="predmet_polag" name="predmet_polag">
+                    <label for="predmet_pred">Предмет
+                        <input type="text" id="predmet_pred" name="predmet_pred">
                     </label>
                 </div>
 
                 <div>
-                    <label for="date_polag">Одржано на датум<br>
-                        <input type="date" id="date_polag" name="date_polag">
+                    <label for="date_pred">Одржано на датум<br>
+                        <input type="date" id="date_pred" name="date_pred">
                     </label>
                 </div>
 
@@ -67,15 +67,68 @@ const vnesi_predavanje_html = `<div class="second_menu" id="second_menu">
                 </div>
 
                 <div class="slider1">
-                  <input type="range" id="status_predaud" name="status_predaud" min="0" max="100" value="0" step="10">
-                  <label for="status_predaud">%</label>
+                    <div class="range-slider">
+                        Статус<br>
+                        <input class="range-slider__range" type="range" value="0" min="0" max="100" step="10">
+                        <span class="range-slider__value">0%</span>
+                    </div>
                 </div>
 
                 <div>
-                    <button id="vnesi_polag" onclick="vnesiPolagFunc()">Внеси полагање</button>
+                    <button id="vnesi_predavanje" class="vnesi_button" onclick="vnesiPredFunc()">Внеси предавање</button>
                 </div>
 
-            </div>`;
+            </div>
+`;
+
+const vnesi_domasno_html = `<div class="second_menu" id="second_menu">
+
+                <div>
+                    <label for="predmet_domasno">Предмет
+                        <input type="text" id="predmet_domasno" name="predmet_domasno">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="date_due">Due date<br>
+                        <input type="date" id="date_due" name="date_due">
+                    </label>
+                </div>
+
+                <div class="slider1">
+                    <div class="range-slider">
+                        Статус<br>
+                        <input class="range-slider__range" type="range" value="0" min="0" max="100" step="10">
+                        <span class="range-slider__value">0%</span>
+                    </div>
+                </div>
+
+                <div>
+                    <button id="vnesi_domasno" class="vnesi_button" onclick="vnesiDomasnoFunc()">Внеси домашно</button>
+                </div>
+
+            </div>
+`;
+
+const vnesi_zabeleska_html = `<div class="second_menu" id="second_menu">
+
+                <div>
+                    <label for="predmet_zabeleska">Предмет
+                        <input type="text" id="predmet_zabeleska" name="predmet_zabeleska">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="zabeleska">Забелешка</label>
+                    <textarea id="zabeleska" name="zabeleska" rows="10" cols="26" placeholder="..."></textarea>
+                </div>
+
+                <div>
+                    <button id="vnesi_zabeleska" class="vnesi_button" onclick="vnesiZabeleskaFunc()">Внеси забелешка</button>
+                </div>
+
+            </div>
+`;
 
 
 window.addEventListener('load', (event) => {
@@ -104,18 +157,34 @@ window.addEventListener('load', (event) => {
 
         // vo const vnesi_predavanje_html e celiot html za formata za dodavanje predavanje
         document.getElementById('vtor_desen_content').innerHTML = vnesi_predavanje_html;
+        rangeSlider();
     });
 
     // + Домашно
     dodadiDomasno.addEventListener("click", function() {
-        alert('clicked domasno');
+        document.getElementById('add_menu').classList.add('invisiblemenu');
+        document.getElementById('vtor_desen_content').classList.remove('invisiblemenu');
+
+        // vo const vnesi_domasno_html e celiot html za formata za dodavanje domasno
+        document.getElementById('vtor_desen_content').innerHTML = vnesi_domasno_html;
+        rangeSlider();
     });
 
     // + Забелешка
     dodadiZabeleska.addEventListener("click", function() {
-        alert('clicked zabeleska');
+        document.getElementById('add_menu').classList.add('invisiblemenu');
+        document.getElementById('vtor_desen_content').classList.remove('invisiblemenu');
+
+        // vo const vnesi_zabeleska_html e celiot html za formata za dodavanje zabeleska
+        document.getElementById('vtor_desen_content').innerHTML = vnesi_zabeleska_html;
     });
+
+
+
 });
+
+// за сите овие евентуално ќе има и други функционалности
+// треба да се координира со контролерите
 
 // click button ВНЕСИ ПОЛАГАЊЕ
 function vnesiPolagFunc() {
@@ -123,4 +192,42 @@ function vnesiPolagFunc() {
     document.getElementById('add_menu').classList.remove('invisiblemenu');
 }
 
+// click button ВНЕСИ ПРЕДАВАЊЕ
+function vnesiPredFunc() {
+    document.getElementById('vtor_desen_content').classList.add('invisiblemenu');
+    document.getElementById('add_menu').classList.remove('invisiblemenu');
+}
 
+// click button ВНЕСИ ДОМАШНО
+function vnesiDomasnoFunc() {
+    document.getElementById('vtor_desen_content').classList.add('invisiblemenu');
+    document.getElementById('add_menu').classList.remove('invisiblemenu');
+}
+
+// click button ВНЕСИ ЗАБЕЛЕШКА
+function vnesiZabeleskaFunc() {
+    document.getElementById('vtor_desen_content').classList.add('invisiblemenu');
+    document.getElementById('add_menu').classList.remove('invisiblemenu');
+}
+
+/* JavaScript za slider
+     https://codepen.io/seanstopnik/pen/CeLqA
+ */
+function rangeSlider() {
+
+    var slider = $('.range-slider'),
+        range = $('.range-slider__range'),
+        value = $('.range-slider__value');
+
+    slider.each(function(){
+
+        value.each(function(){
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+        });
+
+        range.on('input', function(){
+            $(this).next(value).html(this.value + '%');
+        });
+    });
+}
