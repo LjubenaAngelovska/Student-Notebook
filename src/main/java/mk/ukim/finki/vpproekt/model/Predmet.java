@@ -13,17 +13,17 @@ public class Predmet {
     private Long id;
 
     @ManyToOne
-    private Predmet_Finki predmet_finki;
+    private Predmet_Finki predmetFinki;
 
     @ManyToOne
     private Student student;
 
-    private char tekovno_zapisan;
+    private char tekovnoZapisan;
 
-    private int koj_pat;
+    private int kojPat;
 
     @Column(length = 50)
-    private String semestar_zapisan;
+    private String semestarZapisan;
 
     private char polozen;
 
@@ -32,12 +32,12 @@ public class Predmet {
     public Predmet() {
     }
 
-    public Predmet(Predmet_Finki predmet_finki, Student student, char tekovno_zapisan, int koj_pat, String semestar_zapisan, char polozen, int ocenka) {
-        this.predmet_finki = predmet_finki;
+    public Predmet(Predmet_Finki predmetFinki, Student student, char tekovnoZapisan, int kojPat, String semestarZapisan, char polozen, int ocenka) {
+        this.predmetFinki = predmetFinki;
         this.student = student;
-        this.tekovno_zapisan = tekovno_zapisan;
-        this.koj_pat = koj_pat;
-        this.semestar_zapisan = semestar_zapisan;
+        this.tekovnoZapisan = tekovnoZapisan;
+        this.kojPat = kojPat;
+        this.semestarZapisan = semestarZapisan;
         this.polozen = polozen;
         this.ocenka = ocenka;
     }

@@ -424,6 +424,29 @@ main {
     z-index: -1 !important;
 }
 
+.semestar {
+    margin-top: 2.5em;
+}
+
+.semestar > span {
+    display: inline;
+    vertical-align: middle;
+    padding: 2em 1em 0 2em;
+    font-size: 1.2em;
+}
+
+#dodadiSemBtn {
+    display: inline;
+    vertical-align: middle;
+}
+
+.dodadiSemBtn > button {
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 
 
 /* CSS za slider

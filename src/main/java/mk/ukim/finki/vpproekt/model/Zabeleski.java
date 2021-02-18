@@ -19,14 +19,14 @@ public class Zabeleski {
     private Timestamp timestamp;
 
     @Column(length = 255)
-    private String tekst_zabeleska;
+    private String tekstZabeleska;
 
     public Zabeleski() {
     }
 
-    public Zabeleski(Predmet predmet, String tekst_zabeleska) {
+    public Zabeleski(Predmet predmet, String tekstZabeleska) {
         this.predmet = predmet;
         this.timestamp = new Timestamp(System.currentTimeMillis());
-        this.tekst_zabeleska = tekst_zabeleska;
+        this.tekstZabeleska = tekstZabeleska;
     }
 }

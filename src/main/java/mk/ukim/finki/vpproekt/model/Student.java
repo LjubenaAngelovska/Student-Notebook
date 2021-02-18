@@ -17,7 +17,7 @@ public class Student {
     private String embg;
 
     @Column(length = 6)
-    private String broj_indeks;
+    private String brojIndeks;
 
     @Column(length = 50)
     private String ime;
@@ -28,7 +28,7 @@ public class Student {
     @Column(length = 50)
     private String grad;
 
-    private Date datum_zapisuvanje;
+    private Date datumZapisuvanje;
 
     @Column(length = 50)
     private String email;
@@ -36,7 +36,7 @@ public class Student {
     @Column(length = 50)
     private String telefon;
 
-    private char redoven_vonreden;
+    private char redovenVonreden;
 
     @Column(length = 100)
     private String smer;
@@ -46,16 +46,16 @@ public class Student {
 
     }
 
-    public Student(String embg, String broj_indeks, String ime, String prezime, String grad, Date datum_zapisuvanje, String email, String telefon, char redoven_vonreden, String smer) {
+    public Student(String embg, String brojIndeks, String ime, String prezime, String grad, Date datumZapisuvanje, String email, String telefon, char redovenVonreden, String smer) {
         this.embg = embg;
-        this.broj_indeks = broj_indeks;
+        this.brojIndeks = brojIndeks;
         this.ime = ime;
         this.prezime = prezime;
         this.grad = grad;
-        this.datum_zapisuvanje = datum_zapisuvanje;
+        this.datumZapisuvanje = datumZapisuvanje;
         this.email = email;
         this.telefon = telefon;
-        this.redoven_vonreden = redoven_vonreden;
+        this.redovenVonreden = redovenVonreden;
         this.smer = smer;
     }
 }

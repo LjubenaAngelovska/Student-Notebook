@@ -16,16 +16,16 @@ public class Domasno {
     @ManyToOne
     Predmet predmet;
 
-    private Date due_date;
+    private Date dueDate;
 
     private int zavrseno;
 
     public Domasno() {
     }
 
-    public Domasno(Predmet predmet, Date due_date, int zavrseno) {
+    public Domasno(Predmet predmet, Date dueDate, int zavrseno) {
         this.predmet = predmet;
-        this.due_date = due_date;
+        this.dueDate = dueDate;
         this.zavrseno = zavrseno;
     }
 }

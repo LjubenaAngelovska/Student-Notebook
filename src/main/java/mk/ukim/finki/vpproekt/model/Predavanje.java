@@ -16,19 +16,19 @@ public class Predavanje {
     @ManyToOne
     Predmet predmet;
 
-    private Date datum_odrzano;
+    private Date datumOdrzano;
 
     private int nauceno;
 
-    private char pred_aud;
+    private char predAud;
 
     public Predavanje() {
     }
 
-    public Predavanje(Predmet predmet, Date datum_odrzano, int nauceno, char pred_aud) {
+    public Predavanje(Predmet predmet, Date datumOdrzano, int nauceno, char predAud) {
         this.predmet = predmet;
-        this.datum_odrzano = datum_odrzano;
+        this.datumOdrzano = datumOdrzano;
         this.nauceno = nauceno;
-        this.pred_aud = pred_aud;
+        this.predAud = predAud;
     }
 }

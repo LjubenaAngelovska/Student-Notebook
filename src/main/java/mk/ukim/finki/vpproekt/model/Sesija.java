@@ -17,19 +17,19 @@ public class Sesija {
     private String opis;
 
     @Column(length = 50)
-    private String ses_kol;
+    private String sesKol;
 
-    private Date datum_od;
+    private Date datumOd;
 
-    private Date datum_do;
+    private Date datumDo;
 
     public Sesija() {
     }
 
-    public Sesija(String opis, String ses_kol, Date datum_od, Date datum_do) {
+    public Sesija(String opis, String sesKol, Date datumOd, Date datumDo) {
         this.opis = opis;
-        this.ses_kol = ses_kol;
-        this.datum_od = datum_od;
-        this.datum_do = datum_do;
+        this.sesKol = sesKol;
+        this.datumOd = datumOd;
+        this.datumDo = datumDo;
     }
 }

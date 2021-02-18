@@ -19,26 +19,26 @@ public class Polaganje {
     @ManyToOne
     Sesija sesija;
 
-    private Date datum_polaganje;
+    private Date datumPolaganje;
 
     private char online;
 
     private char polozen;
 
-    private double osvoeni_poeni;
+    private double osvoeniPoeni;
 
-    private char teorija_prakticno;
+    private char teorijaPrakticno;
 
     public Polaganje() {
     }
 
-    public Polaganje(Predmet predmet, Sesija sesija, Date datum_polaganje, char online, char polozen, double osvoeni_poeni, char teorija_prakticno) {
+    public Polaganje(Predmet predmet, Sesija sesija, Date datumPolaganje, char online, char polozen, double osvoeniPoeni, char teorijaPrakticno) {
         this.predmet = predmet;
         this.sesija = sesija;
-        this.datum_polaganje = datum_polaganje;
+        this.datumPolaganje = datumPolaganje;
         this.online = online;
         this.polozen = polozen;
-        this.osvoeni_poeni = osvoeni_poeni;
-        this.teorija_prakticno = teorija_prakticno;
+        this.osvoeniPoeni = osvoeniPoeni;
+        this.teorijaPrakticno = teorijaPrakticno;
     }
 }
