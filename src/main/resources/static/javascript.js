@@ -14,7 +14,7 @@ const vnesi_polaganje_html = `<div class="second_menu" id="second_menu">
 
                 <div>
                     <label for="ses_polag">Колоквиум/сесија
-                        <select name="ses_polag" id="ses_polag">
+                        <select name="ses_polag" id="ses_polag" class="dd">
                             <option value="kol_prv">прв колоквиум</option>
                             <option value="kol_vtor">втор колоквиум</option>
                             <option value="ses_jan">јануарска сесија</option>

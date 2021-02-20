@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Предмети</title>
@@ -24,42 +24,160 @@
     </ul>
 </header>
 
+
+<form action="/studentController/add" method="POST">
+    <div id="myNav" class="overlay">
+        <span id="nov_predmet_span">Нов Предмет</span>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <div>
+                <label for="ime_nov_pr">Име
+                    <input type="text" id="ime_nov_pr" name="ime_nov_pr">
+                </label>
+            </div>
+            <div>
+                <textarea id="opis_nov_pr" name="opis_nov_pr" rows="4" cols="35" placeholder="Опис"></textarea>
+            </div>
+            <div class="rbt rbt2">
+                <input type="radio" id="zadolz" name="zadolz_nezadolz" value="1">
+                <label for="zadolz">Задолжителен</label>
+                <input type="radio" id="nezadolz" name="zadolz_nezadolz" value="0">
+                <label for="nezadolz">Незадолжителен</label><br>
+            </div>
+
+            <div class="temp">
+                <div>
+                    <label for="sem_nov_pr">Семестар</label>
+                    <select name="sem_nov_pr" id="sem_nov_pr" class="dd" style="width: 4em">
+                        <option value="" selected disabled hidden>...</option>
+                        <option value="zimski">зимски</option>
+                        <option value="leten">летен</option>
+                    </select>
+                </div>
+                <div style="padding-left: 1.5em">
+                    <label for="sem_zapisan_nov_pr">Запишан во семестар</label>
+                    <select name="sem_zapisan_nov_pr" id="sem_zapisan_nov_pr" class="dd" style="width: 4em">
+                        <option value="" selected disabled hidden>...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="temp">
+                <div>
+                    <label for="koj_pat_nov_pr">Кој пат</label>
+                    <select name="koj_pat_nov_pr" id="koj_pat_nov_pr" class="dd" style="width: 4em">
+                        <option value="" selected disabled hidden>...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div class="rbt rbt2" style="padding-left: 1.3em">
+                    Тековно запишан
+                    <input type="radio" id="tek_zap_nov_pr" name="tek_zap_nov_pr" value="1">
+                    <label for="tek_zap_nov_pr">Да</label>
+                    <input type="radio" id="ne_tek_zap_nov_pr" name="tek_zap_nov_pr" value="0">
+                    <label for="ne_tek_zap_nov_pr">Не</label><br>
+                </div>
+            </div>
+
+            <div class="temp">
+                <div class="rbt rbt2">
+                    Положен
+                    <input type="radio" id="poloz_nov_pr" name="poloz_nov_pr" value="1">
+                    <label for="poloz_nov_pr">Да</label>
+                    <input type="radio" id="ne_poloz_nov_pr" name="poloz_nov_pr" value="0">
+                    <label for="ne_poloz_nov_pr">Не</label><br>
+                </div>
+                <div style="padding-left: 3em">
+                    <label for="ocenka_nov_pr">Оценка</label>
+                    <select name="ocenka_nov_pr" id="ocenka_nov_pr" class="dd" style="width: 4em">
+                        <option value="" selected disabled hidden>...</option>
+                        <option value="5">/</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="divbtn_dodadi_predmet">
+                <!--<button id="vnesi_nov_predmet" class="vnesi_button" onclick="">Внеси Предмет</button>-->
+                <input type="submit" value="Submit" class="vnesi_button"/>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
 <div class="semestar">
     <span>Семестар</span>
-    <div class="dodadiSemBtn" id="dodadiSemBtn">
-        <button style='font-size:24px' onclick="dodadiSemestar()"> <i class='fas fa-plus'></i></button>
-    </div>
+
+    <form th:action="@{/studentController/izberiSemestar}">
+        <select name="dd_semestar" id="dd_semestar" onchange="this.form.submit()" class="dd" style="width: 6em">
+            <option value="" selected disabled hidden>...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">Сите</option>
+        </select>
+    </form>
 </div>
 
 <section class="section_tabela">
 
+    <div class="dodadiSemBtn" id="dodadiSemBtn">
+        <button style='font-size:24px' onclick="openNav()"> <i class='fas fa-plus'></i></button>
+    </div>
+
     <table class="tabela_predmeti">
         <thead>
         <tr>
-            <th></th>
+            <th>Предмет</th>
             <th>Кој пат</th>
-            <th>Статус</th>
+            <th>Задолж/Изборен</th>
             <th>Оцена</th>
             <th>Положен</th>
+            <th>Семестар запишан</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
+<!--        <tr>
             <td>Компјутерски Мрежи и Безбедност</td>
             <td>2</td>
             <td>Задолжителен</td>
             <td>7</td>
             <td><i class='far fa-circle empty_icon'></i></td>
             <td>Повеќе информации</td>
-        </tr>
+        </tr>-->
 
         <tr th:each="predmet : ${predmeti}">
             <td><th:block th:text="${predmet.getPredmetFinki().getIme()}"></th:block></td>
             <td><th:block th:text="${predmet.getKojPat()}"></th:block></td>
-            <td><th:block th:text="${predmet.getPredmetFinki().getZadolzitelen()}"></th:block></td>
-            <td><th:block th:text="${predmet.getOcenka()}"></th:block></td>
+            <td class="td_zadolzitelen"><th:block th:text="${predmet.getPredmetFinki().getZadolzitelen()}"></th:block></td>
+            <td class="td_ocenka"><th:block th:text="${predmet.getOcenka()}"></th:block></td>
             <td><th:block th:text="${predmet.getPolozen()}"></th:block></td>
+            <td><th:block th:text="${predmet.getSemestarZapisan()}"></th:block></td>
             <td>Повеќе информации</td>
         </tr>
 

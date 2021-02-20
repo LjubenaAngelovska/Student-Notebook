@@ -16,6 +16,14 @@ header {
     color: #FEFEFE;
 }
 
+input[type="text"] {
+    cursor: text;
+}
+
+input[type="date"] {
+    cursor: pointer;
+}
+
 .logo-div {
     display: inline;
     padding-right: 5em;
@@ -101,17 +109,17 @@ section::after {
     margin-bottom: 1em;
 }
 
-.second_menu input[type="text"], .second_menu input[type="date"] {
+
+input[type="text"], .second_menu input[type="date"] {
     width: 200px;
     padding: 5px;
     border: 0;
     border-bottom: 1px solid #bebebe;
     font-family:inherit;
     font-size: inherit;
-    cursor: pointer;
 }
 
-.second_menu select {
+.dd {
     width: 100%;
     padding:10px;
     border-radius:10px;
@@ -161,6 +169,10 @@ section::after {
 
 .rbt1 {
     margin-top: 3em;
+}
+
+.rbt2 {
+    margin-top: 1em;
 }
 
 #zabeleska {
@@ -360,10 +372,6 @@ main {
     color: #FFDE00;
 }
 
-.section_tabela {
-    margin-top: 20px;
-}
-
 .tabela_predmeti {
     margin-left: 3em;
 }
@@ -426,18 +434,21 @@ main {
 
 .semestar {
     margin-top: 2.5em;
+    display: inline-flex;
 }
 
 .semestar > span {
     display: inline;
     vertical-align: middle;
-    padding: 2em 1em 0 2em;
+    padding: 0.8em 1em 0 2em;
     font-size: 1.2em;
 }
 
 #dodadiSemBtn {
     display: inline;
-    vertical-align: middle;
+    position: relative;
+    top: 2.5em;
+    right: -62em;
 }
 
 .dodadiSemBtn > button {
@@ -546,3 +557,73 @@ input::-moz-focus-outer {
 }
 
 /* End of CSS za slider */
+
+#nov_predmet_span {
+    font-size: 1.5em;
+    top: 1em;
+    position: absolute;
+    left: 1em;
+}
+
+.overlay {
+    height: 90%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    background-color: #FEFEFE;
+    overflow-x: hidden;
+    transition: 0.5s;
+    font-size: small;
+    font-family: Arial, sans-serif;
+}
+
+.overlay-content {
+    position: relative;
+    top: 1.2em;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FEFEFE;
+    padding: 2em;
+    line-height: 1.7;
+}
+
+.overlay-content input[type="text"] {
+    margin-bottom: 1em;
+}
+
+.overlay a {
+    text-decoration: none;
+    color: #000000;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0.3em;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+.temp {
+    display: flex;
+    align-items: baseline;
+    padding-top: 1em;
+}
+
+.divbtn_dodadi_predmet {
+    margin: 1em 0 0 5em;
+}
