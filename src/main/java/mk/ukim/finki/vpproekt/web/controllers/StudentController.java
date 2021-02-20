@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -79,5 +81,62 @@ public class StudentController {
         this.predmetService.save(ime_nov_pr, opis_nov_pr, sem_nov_pr, zadolz_nezadolz, tek_zap_nov_pr, koj_pat_nov_pr, sem_zapisan_nov_pr, poloz_nov_pr, ocenka_nov_pr);
         return "redirect:/studentController/predmetiPage";
     }
+
+    @RequestMapping(value = "/sortiraj", method = RequestMethod.GET)
+    public String sortiraj(Model model, @RequestParam("sortby") String sortby) {
+
+        switch (sortby) {
+            case "1": {
+                List<Predmet> predmeti = this.predmetService.listAll()
+                        .stream()
+                        .sorted(Comparator.comparing(p -> p.getPredmetFinki().getIme()))
+                        .collect(Collectors.toList());
+                model.addAttribute("predmeti", predmeti);
+                break;
+            }
+            case "2": {
+                List<Predmet> predmeti = this.predmetService.listAll()
+                        .stream()
+                        .sorted(Comparator.comparing(Predmet::getKojPat))
+                        .collect(Collectors.toList());
+                model.addAttribute("predmeti", predmeti);
+                break;
+            }
+            case "3": {
+                List<Predmet> predmeti = this.predmetService.listAll()
+                        .stream()
+                        .sorted(Comparator.comparing(p -> p.getPredmetFinki().getZadolzitelen()))
+                        .collect(Collectors.toList());
+                model.addAttribute("predmeti", predmeti);
+                break;
+            }
+            case "4": {
+                List<Predmet> predmeti = this.predmetService.listAll()
+                        .stream()
+                        .sorted(Comparator.comparing(Predmet::getOcenka))
+                        .collect(Collectors.toList());
+                model.addAttribute("predmeti", predmeti);
+                break;
+            }
+            case "5": {
+                List<Predmet> predmeti = this.predmetService.listAll()
+                        .stream()
+                        .sorted(Comparator.comparing(Predmet::getPolozen))
+                        .collect(Collectors.toList());
+                model.addAttribute("predmeti", predmeti);
+                break;
+            }
+            case "6": {
+                List<Predmet> predmeti = this.predmetService.listAll()
+                        .stream()
+                        .sorted(Comparator.comparing(Predmet::getSemestarZapisan))
+                        .collect(Collectors.toList());
+                model.addAttribute("predmeti", predmeti);
+                break;
+            }
+        }
+        return "predmeti-page";
+    }
+
 
 }

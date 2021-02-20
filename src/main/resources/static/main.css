@@ -376,6 +376,20 @@ main {
     margin-left: 3em;
 }
 
+body > section > table > thead > tr > th > label {
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+body > section > table > thead > tr > th > label:hover {
+    text-decoration: underline;
+    color: #013054;
+}
+
+body > section > table > thead > tr > th > input[type="radio"] {
+    display: none;
+}
+
 .tabela, .tabela_predmeti {
     border-collapse: collapse;
     width: 80%;
@@ -388,9 +402,17 @@ main {
     text-align: left;
 }
 
+.tabela_predmeti {
+    text-align: center;
+}
+
 .tabela td, .tabela th, .tabela_predmeti td, .tabela_predmeti th {
     border: 1px solid #ddd;
     padding: 8px;
+}
+
+.tabela_predmeti > tbody > tr > td:nth-child(1) {
+    text-align: left;
 }
 
 .tabela tr, .tabela_predmeti tr {

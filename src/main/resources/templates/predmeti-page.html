@@ -150,16 +150,37 @@
     </div>
 
     <table class="tabela_predmeti">
+
         <thead>
-        <tr>
-            <th>Предмет</th>
-            <th>Кој пат</th>
-            <th>Задолж/Изборен</th>
-            <th>Оцена</th>
-            <th>Положен</th>
-            <th>Семестар запишан</th>
-            <th></th>
-        </tr>
+        <form th:action="@{/studentController/sortiraj}">
+            <tr>
+                <th>
+                    <input type="radio" name="sortby" value="1" id="s1" onchange="this.form.submit()">
+                    <label for="s1">Предмет</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="2" id="s2" onchange="this.form.submit()">
+                    <label for="s2">Кој пат</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="3" id="s3" onchange="this.form.submit()">
+                    <label for="s3">Задолж/<br>Изборен</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="4" id="s4" onchange="this.form.submit()">
+                    <label for="s4">Оцена</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="5" id="s5" onchange="this.form.submit()">
+                    <label for="s5">Положен</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="6" id="s6" onchange="this.form.submit()">
+                    <label for="s6">Семестар<br>запишан</label>
+                </th>
+                <th></th>
+            </tr>
+        </form>
         </thead>
         <tbody>
 <!--        <tr>
@@ -176,7 +197,7 @@
             <td><th:block th:text="${predmet.getKojPat()}"></th:block></td>
             <td class="td_zadolzitelen"><th:block th:text="${predmet.getPredmetFinki().getZadolzitelen()}"></th:block></td>
             <td class="td_ocenka"><th:block th:text="${predmet.getOcenka()}"></th:block></td>
-            <td><th:block th:text="${predmet.getPolozen()}"></th:block></td>
+            <td class="td_polozen"><th:block th:text="${predmet.getPolozen()}"></th:block></td>
             <td><th:block th:text="${predmet.getSemestarZapisan()}"></th:block></td>
             <td>Повеќе информации</td>
         </tr>
