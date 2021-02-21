@@ -28,13 +28,7 @@ window.addEventListener('load', (event) => {
         }
     }
 
-
 });
-// click button + kaj Семестар
-function dodadiSemestar() {
-    alert("clicked");
-}
-
 
 function openNav() {
     document.getElementById("myNav").style.width = "32%";

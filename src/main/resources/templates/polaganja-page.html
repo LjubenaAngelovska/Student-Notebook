@@ -5,6 +5,8 @@
     <title>Полагања</title>
     <link rel="stylesheet" th:href="@{/main.css}"/>
     <link rel="shortcut icon" type="image/png" th:href="@{/img/sn-logopng.png}"/>
+    <script src="../polaganja-js.js" rel="stylesheet"></script>
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
@@ -22,6 +24,10 @@
     </ul>
 </header>
 
+
+
+
+
 <section class="section_tabela">
 
     <table class="tabela">
@@ -38,15 +44,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr th:each="polaganje : ${polaganja}">
             <td>Идни</td>
-            <td>20.06.2021</td>
-            <td>Алгоритми и Податочни Структури</td>
-            <td>Јунска</td>
-            <td>Теорија</td>
-            <td>Online</td>
-            <td>-</td>
-            <td><i class='far fa-circle empty_icon'></i></td>
+            <td><th:block th:text="${polaganje.getDatumPolaganje().toString()}"></th:block></td>
+            <td><th:block th:text="${polaganje.getPredmet().getPredmetFinki().getIme()}"></th:block></td>
+            <td class="td_sesija"><th:block th:text="${polaganje.getSesija().getOpis()}"></th:block></td>
+            <td class="teor_prak"><th:block th:text="${polaganje.getTeorijaPrakticno()}"></th:block></td>
+            <td class="nacin"><th:block th:text="${polaganje.getOnline()}"></th:block></td>
+            <td class="osvoeni_poeni"><th:block th:text="${polaganje.getOsvoeniPoeni()}"></th:block></td>
+            <!--<td><i class='far fa-circle empty_icon'></i></td>-->
+            <td class="pol_polozen"><th:block th:text="${polaganje.getPolozen()}"></th:block></td>
         </tr>
         </tbody>
 

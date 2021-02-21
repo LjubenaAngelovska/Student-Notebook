@@ -1,5 +1,6 @@
 package mk.ukim.finki.vpproekt.web.controllers;
 
+import mk.ukim.finki.vpproekt.model.Polaganje;
 import mk.ukim.finki.vpproekt.model.Predmet;
 import mk.ukim.finki.vpproekt.service.PolaganjeService;
 import mk.ukim.finki.vpproekt.service.PredmetService;
@@ -30,10 +31,16 @@ public class StudentController {
         return "home-page";
     }
 
+
     @GetMapping("/polaganjaPage")
     public String getPolaganjaPage(@RequestParam(required = false) String error, Model model) {
+
+        List<Polaganje> polaganja = this.polaganjeService.listAll();
+        model.addAttribute("polaganja", polaganja);
+
         return "polaganja-page";
     }
+
 
     @GetMapping("/predmetiPage")
     public String getPredmetiPage(@RequestParam(required = false) String error, Model model) {

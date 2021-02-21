@@ -433,10 +433,6 @@ body > section > table > thead > tr > th > input[type="radio"] {
     width: 5em;
 }
 
-.tabela tr td:nth-child(2) {
-    width: 5em;
-}
-
 .tabela tr td:nth-child(3) {
     width: 22em;
 }
