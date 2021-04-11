@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,10 @@ public class StudentController {
 
     @GetMapping
     public String getHomePage(@RequestParam(required = false) String error, Model model) {
+
+        List<Predmet> predmeti = this.predmetService.listAll();
+        model.addAttribute("predmeti", predmeti);
+
         return "home-page";
     }
 
@@ -88,6 +93,25 @@ public class StudentController {
         this.predmetService.save(ime_nov_pr, opis_nov_pr, sem_nov_pr, zadolz_nezadolz, tek_zap_nov_pr, koj_pat_nov_pr, sem_zapisan_nov_pr, poloz_nov_pr, ocenka_nov_pr);
         return "redirect:/studentController/predmetiPage";
     }
+
+
+    @PostMapping("/addPolaganje")
+    public String savePolaganje(@RequestParam String predmet_polag,
+                              @RequestParam Date date_polag,
+                              @RequestParam String ses_polag,
+                              @RequestParam char tip_polag,
+                              @RequestParam char nacin_polag,
+                              @RequestParam char polozen_cb,
+                              @RequestParam double poeni_inp) {
+
+        this.polaganjeService.save(predmet_polag, date_polag, ses_polag, tip_polag, nacin_polag, polozen_cb, poeni_inp);
+        return "redirect:/studentController/predmetiPage";
+    }
+
+
+
+
+
 
     @RequestMapping(value = "/sortiraj", method = RequestMethod.GET)
     public String sortiraj(Model model, @RequestParam("sortby") String sortby) {

@@ -1,8 +1,20 @@
+/*
 const vnesi_polaganje_html = `<div class="second_menu" id="second_menu">
 
                 <div>
                     <label for="predmet_polag">Предмет
                         <input type="text" id="predmet_polag" name="predmet_polag">
+                    </label>
+                </div>
+
+                <div>
+                    <label for="all_predmeti">Предмет
+                        <select name="all_predmeti" id="all_predmeti" class="dd">
+                            <option th:each="predmet : ${predmeti}"
+                                    th:text="${predmet.getPredmetFinki().getIme()}"
+                                    th:value="${predmet.getId()}">
+                            </option>
+                        </select>
                     </label>
                 </div>
 
@@ -24,18 +36,32 @@ const vnesi_polaganje_html = `<div class="second_menu" id="second_menu">
                     </label>
                 </div>
 
-                <div class="rbt">
-                    <input type="radio" id="t_polag" name="tip_polag" value="teorija">
-                    <label for="t_polag">Теорија</label>
-                    <input type="radio" id="z_polag" name="tip_polag" value="zadaci">
-                    <label for="z_polag">Задачи</label><br>
+                <div style="width: 6em; position: absolute">
+                    <label for="tip_polag">
+                        <select name="tip_polag" id="tip_polag" class="dd">
+                            <option value="teorija">теорија</option>
+                            <option value="prakticno">практично</option>
+                        </select>
+                    </label>
                 </div>
 
-                <div class="rbt">
-                    <input type="radio" id="onl_polag" name="nacin_polag" value="online">
-                    <label for="onl_polag">Online</label>
-                    <input type="radio" id="ziv_polag" name="nacin_polag" value="vozivo">
-                    <label for="ziv_polag">Во живо</label><br>
+                <div style="width: 6em; position: relative; left: 7em">
+                    <label for="nacin_polag">
+                        <select name="nacin_polag" id="nacin_polag" class="dd">
+                            <option value="online">online</option>
+                            <option value="vozivo">во живо</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="temp2" style="position: relative">
+                    <input type="checkbox" id="polozen_cb" name="polozen_cb">
+                    <label for="polozen_cb">Положен</label>
+                </div>
+
+                <div class="temp2" style="position: absolute; right: 3.5em; top: 21.8em;">
+                    <label for="poeni_inp">Поени</label>
+                    <input type="number" step="any" id="poeni_inp" name="poeni_inp">
                 </div>
 
                 <div>
@@ -44,6 +70,7 @@ const vnesi_polaganje_html = `<div class="second_menu" id="second_menu">
 
             </div>
 `;
+*/
 
 const vnesi_predavanje_html = `<div class="second_menu" id="second_menu">
 
@@ -143,11 +170,15 @@ window.addEventListener('load', (event) => {
 
     // + Полагање
     dodadiPolaganje.addEventListener("click", function() {
-        document.getElementById('add_menu').classList.add('invisiblemenu');
+       /* document.getElementById('add_menu').classList.add('invisiblemenu');
         document.getElementById('vtor_desen_content').classList.remove('invisiblemenu');
 
         // vo const vnesi_polaganje_html e celiot html za formata za dodavanje polaganje
-        document.getElementById('vtor_desen_content').innerHTML = vnesi_polaganje_html;
+        document.getElementById('vtor_desen_content').innerHTML = vnesi_polaganje_html;*/
+
+        document.getElementById('dodadiPolaganjeDiv').classList.remove('invisiblemenu');
+        document.getElementById('dodadiPolaganjeDiv').classList.add('visiblemenu');
+
     });
 
     // + Предавање

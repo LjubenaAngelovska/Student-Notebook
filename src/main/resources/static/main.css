@@ -24,6 +24,15 @@ input[type="date"] {
     cursor: pointer;
 }
 
+input[type="number"] {
+    width: 5em;
+    cursor: text;
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid #707070;
+    font-size: small;
+}
+
 .logo-div {
     display: inline;
     padding-right: 5em;
@@ -146,7 +155,7 @@ input[type="text"], .second_menu input[type="date"] {
 .vnesi_button {
     display:inline-block;
     padding:0.7em 1.4em;
-    margin:1em 0 0 1.7em;
+    margin:0.5em 0 0 1.7em;
     border-radius:0.3em;
     box-sizing: border-box;
     text-decoration:none;
@@ -450,6 +459,11 @@ body > section > table > thead > tr > th > input[type="radio"] {
     z-index: -1 !important;
 }
 
+.visiblemenu {
+    visibility: visible;
+    z-index: 1;
+}
+
 .semestar {
     margin-top: 2.5em;
     display: inline-flex;
@@ -644,4 +658,8 @@ input::-moz-focus-outer {
 
 .divbtn_dodadi_predmet {
     margin: 1em 0 0 5em;
+}
+
+.temp2 > label {
+    font-size: 0.8em;
 }

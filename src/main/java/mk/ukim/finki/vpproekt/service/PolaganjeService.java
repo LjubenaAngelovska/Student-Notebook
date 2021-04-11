@@ -6,10 +6,13 @@ import mk.ukim.finki.vpproekt.model.Sesija;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface PolaganjeService {
 
     List<Polaganje> listAll();
+
+    Optional<Polaganje> save(String predmet_ime, Date datumPolaganje, String sesija, char teorijaPrakticno, char online, char polozen, double osvoeniPoeni);
 
     Polaganje findPolaganjeById(Long id);
 
