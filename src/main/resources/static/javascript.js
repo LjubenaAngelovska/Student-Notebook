@@ -1,4 +1,5 @@
 /*
+
 const vnesi_polaganje_html = `<div class="second_menu" id="second_menu">
 
                 <div>
@@ -71,6 +72,7 @@ const vnesi_polaganje_html = `<div class="second_menu" id="second_menu">
             </div>
 `;
 */
+
 
 const vnesi_predavanje_html = `<div class="second_menu" id="second_menu">
 
@@ -170,14 +172,17 @@ window.addEventListener('load', (event) => {
 
     // + Полагање
     dodadiPolaganje.addEventListener("click", function() {
-       /* document.getElementById('add_menu').classList.add('invisiblemenu');
-        document.getElementById('vtor_desen_content').classList.remove('invisiblemenu');
 
-        // vo const vnesi_polaganje_html e celiot html za formata za dodavanje polaganje
-        document.getElementById('vtor_desen_content').innerHTML = vnesi_polaganje_html;*/
+        alert("AAA");
+         document.getElementById('add_menu').classList.add('invisiblemenu');
+         document.getElementById('vtor_desen_content').classList.remove('invisiblemenu');
 
+         // vo const vnesi_polaganje_html e celiot html za formata za dodavanje polaganje
+         document.getElementById('vtor_desen_content').innerHTML = vnesi_polaganje_html;
+
+         /*
         document.getElementById('dodadiPolaganjeDiv').classList.remove('invisiblemenu');
-        document.getElementById('dodadiPolaganjeDiv').classList.add('visiblemenu');
+        document.getElementById('dodadiPolaganjeDiv').classList.add('visiblemenu');*/
 
     });
 

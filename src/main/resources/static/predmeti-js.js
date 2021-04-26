@@ -5,7 +5,7 @@ window.addEventListener('load', (event) => {
     const ocenki = document.querySelectorAll(".td_ocenka");
     const polozen = document.querySelectorAll(".td_polozen");
 
-    for (i = 0; i < zadolzitelni.length; i++) {
+    for (let i = 0; i < zadolzitelni.length; i++) {
         if (zadolzitelni[i].firstChild.textContent==='1') {
             zadolzitelni[i].firstChild.textContent = "З";
         } else {
@@ -13,13 +13,13 @@ window.addEventListener('load', (event) => {
         }
     }
 
-    for (i = 0; i<ocenki.length; i++) {
+    for (let i = 0; i<ocenki.length; i++) {
         if (ocenki[i].firstChild.textContent==5) {
             ocenki[i].firstChild.textContent = '-';
         }
     }
 
-    for (i = 0; i<polozen.length; i++) {
+    for (let i = 0; i<polozen.length; i++) {
         if (polozen[i].firstChild.textContent==='1') {
             polozen[i].innerHTML = '<i class=\'fas fa-check-circle check_icon\'></i>';
         }
