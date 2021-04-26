@@ -27,4 +27,8 @@ public interface PolaganjeRepositoryJpa extends JpaRepository<Polaganje, Long> {
     List<Polaganje> findAllByOsvoeniPoeni(double osvoeniPoeni);
 
     List<Polaganje> findAllByTeorijaPrakticno(char teorijaPrakticno);
+
+    List<Polaganje> findAllByDatumPolaganjeBefore(Date date);
+
+    List<Polaganje> findAllByDatumPolaganjeAfter(Date date);
 }

@@ -7,28 +7,14 @@ window.addEventListener('load', (event) => {
     const osvoeni_poeni = document.querySelectorAll(".osvoeni_poeni");
     const pol_polozen = document.querySelectorAll(".pol_polozen");
 
-    for (i = 0; i < sesija.length; i++) {
-        if (sesija[i].firstChild.textContent==="zimskiprv") {
-            sesija[i].firstChild.textContent = "прв колоквиум";
-        }
-        else if (sesija[i].firstChild.textContent==="zimskivtor") {
-            sesija[i].firstChild.textContent = "втор колоквиум";
-        }
-        else if (sesija[i].firstChild.textContent==="letenprv") {
-            sesija[i].firstChild.textContent = "прв колоквиум";
-        }
-        else if (sesija[i].firstChild.textContent==="letenvtor") {
-            sesija[i].firstChild.textContent = "втор колоквиум";
-        }
-        else if (sesija[i].firstChild.textContent==="januarska") {
-            sesija[i].firstChild.textContent = "јануарска сесија";
-        }
-        else if (sesija[i].firstChild.textContent==="junska") {
-            sesija[i].firstChild.textContent = "јунска сесија";
-        }
-        else if (sesija[i].firstChild.textContent==="septemvriska") {
-            sesija[i].firstChild.textContent = "септемвриска сесија";
-        }
+    for (i = 0; i<sesija.length; i++) {
+
+        var temp1 = sesija[i].textContent.split("="); // втор колоквиум 2020, sesKol
+        var temp2 = temp1[2].split(","); // втор колоквиум 2020
+
+        //Sesija(id=5, opis=втор колоквиум 2020, sesKol=vtorkol, datumOd=2020-01-16, datumDo=2020-01-23)
+
+        sesija[i].firstChild.textContent = temp2[0];
     }
 
     for (i = 0; i < teor_prak.length; i++) {
@@ -71,7 +57,7 @@ window.addEventListener('load', (event) => {
 
 
 
-    function openNav() {
+function openNav() {
     document.getElementById("myNav").style.width = "32%";
 }
 

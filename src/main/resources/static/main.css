@@ -136,6 +136,11 @@ input[type="text"], .second_menu input[type="date"] {
     margin-top: 0.5em;
 }
 
+.divbtn_dodadi_polaganje {
+    position: relative;
+    top: 4em;
+}
+
 .rbt {
     font-size: small;
 }
@@ -443,11 +448,19 @@ body > section > table > thead > tr > th > input[type="radio"] {
 }
 
 .tabela tr td:nth-child(3) {
-    width: 22em;
+    width: 21em;
 }
 
-.tabela tr td:nth-child(4), .tabela tr td:nth-child(5), .tabela tr td:nth-child(6) {
-    width: 6em;
+.tabela tr td:nth-child(4) {
+    width: 9em;
+}
+
+.tabela tr td:nth-child(5) {
+    width: 5em;
+}
+
+.tabela tr td:nth-child(6) {
+    width: 5em;
 }
 
 .tabela tr td:nth-child(7), .tabela tr td:nth-child(8) {
@@ -476,19 +489,21 @@ body > section > table > thead > tr > th > input[type="radio"] {
     font-size: 1.2em;
 }
 
-#dodadiSemBtn {
+#dodadiPredmetBtn, #dodadiPolagBtn {
     display: inline;
     position: relative;
     top: 2.5em;
     right: -62em;
 }
 
-.dodadiSemBtn > button {
+.dodadiPredmetBtn > button, .dodadiPolagBtn > button {
     background: none;
     color: white;
     border: none;
     cursor: pointer;
 }
+
+
 
 
 

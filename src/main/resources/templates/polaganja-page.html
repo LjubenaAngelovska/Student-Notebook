@@ -24,61 +24,165 @@
     </ul>
 </header>
 
+<form action="/studentController/addPolaganje" method="POST">
+    <div id="myNav" class="overlay">
+        <span id="novo_polaganje_span">Нов Предмет</span>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+
+            <div>
+                <label for="predmet_polag">Предмет
+                    <select name="predmet_polag" id="predmet_polag" class="dd">
+                        <option th:each="predmet : ${predmeti}"
+                                th:text="${predmet.getPredmetFinki().getIme()}"
+                                th:value="${predmet.getId()}">
+                        </option>
+                    </select>
+                </label>
+            </div>
+
+            <div>
+                <label for="date_polag">Датум<br>
+                    <input type="date" id="date_polag" name="date_polag">
+                </label>
+            </div>
+
+            <div style="width: 12em">
+                <label for="ses_polag">Колоквиум/сесија
+                    <select name="ses_polag" id="ses_polag" class="dd">
+                        <option th:each="sesija : ${sesii}"
+                                th:text="${sesija.getOpis()}"
+                                th:value="${sesija.getId()}">
+                        </option>
+                    </select>
+                </label>
+            </div>
+
+            <div style="width: 6em; position: absolute">
+                <label for="tip_polag">
+                    <select name="tip_polag" id="tip_polag" class="dd">
+                        <option value="t">теорија</option>
+                        <option value="p">практично</option>
+                    </select>
+                </label>
+            </div>
+
+            <div style="width: 6em; position: relative; left: 7em">
+                <label for="nacin_polag">
+                    <select name="nacin_polag" id="nacin_polag" class="dd">
+                        <option value="1">online</option>
+                        <option value="0">во живо</option>
+                    </select>
+                </label>
+            </div>
+            <!--
+                        <div class="temp2" style="position: relative">
+                            <input type="checkbox" id="polozen_cb" name="polozen_cb">
+                            <label for="polozen_cb">Положен</label>
+                        </div>-->
+
+            <div class="temp2" style="position: absolute; width: 12em">
+                <label for="polozen_cb">
+                    <select name="polozen_cb" id="polozen_cb" class="dd">
+                        <option value="y">положен</option>
+                        <option value="n">паднат</option>
+                        <option value="x">неодредено</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="temp2" style="position: absolute; right: 3.5em; top: 19.8em;">
+                <label for="poeni_inp">Поени</label>
+                <input type="number" step="any" id="poeni_inp" name="poeni_inp" value="0">
+            </div>
+
+            <div class="divbtn_dodadi_polaganje">
+                <!--<button id="vnesi_nov_predmet" class="vnesi_button" onclick="">Внеси Предмет</button>-->
+                <input type="submit" value="Внеси полагање" class="vnesi_button"/>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
 <section class="section_tabela">
 
+    <div class="dodadiPolagBtn" id="dodadiPolagBtn">
+        <button style='font-size:24px' onclick="openNav()"> <i class='fas fa-plus'></i></button>
+    </div>
+
     <table class="tabela">
+
         <thead>
-        <tr>
-            <th></th>
-            <th>Датум</th>
-            <th>Предмет</th>
-            <th>Сесија</th>
-            <th>Тип</th>
-            <th>Начин</th>
-            <th>Поени</th>
-            <th>Положен</th>
-        </tr>
+        <form th:action="@{/studentController/sortirajPolaganja}">
+            <tr>
+                <th></th>
+                <th>
+                    <input type="radio" name="sortby" value="1" id="s1" onchange="this.form.submit()">
+                    <label for="s1">Датум</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="2" id="s2" onchange="this.form.submit()">
+                    <label for="s2">Предмет</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="3" id="s3" onchange="this.form.submit()">
+                    <label for="s3">Сесија</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="4" id="s4" onchange="this.form.submit()">
+                    <label for="s4">Тип</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="5" id="s5" onchange="this.form.submit()">
+                    <label for="s5">Начин</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="6" id="s6" onchange="this.form.submit()">
+                    <label for="s6">Поени</label>
+                </th>
+                <th>
+                    <input type="radio" name="sortby" value="7" id="s7" onchange="this.form.submit()">
+                    <label for="s7">Положен</label>
+                </th>
+                <th></th>
+            </tr>
+        </form>
         </thead>
         <tbody>
-        <tr th:each="polaganje : ${polaganja}">
+        <tr>
             <td>Идни</td>
-            <td><th:block th:text="${polaganje.getDatumPolaganje().toString()}"></th:block></td>
-            <td><th:block th:text="${polaganje.getPredmet().getPredmetFinki().getIme()}"></th:block></td>
-            <td class="td_sesija"><th:block th:text="${polaganje.getSesija().getOpis()}"></th:block></td>
-            <td class="teor_prak"><th:block th:text="${polaganje.getTeorijaPrakticno()}"></th:block></td>
-            <td class="nacin"><th:block th:text="${polaganje.getOnline()}"></th:block></td>
-            <td class="osvoeni_poeni"><th:block th:text="${polaganje.getOsvoeniPoeni()}"></th:block></td>
-            <!--<td><i class='far fa-circle empty_icon'></i></td>-->
-            <td class="pol_polozen"><th:block th:text="${polaganje.getPolozen()}"></th:block></td>
         </tr>
-        </tbody>
-
-    </table>
-
-    <table class="tabela">
-        <tbody>
+        <tr th:each="p1 : ${idniPolaganja}">
+            <td></td>
+            <td><th:block th:text="${p1.getDatumPolaganje().toString()}"></th:block></td>
+            <td><th:block th:text="${p1.getPredmet().getPredmetFinki().getIme()}"></th:block></td>
+            <td class="td_sesija"><th:block th:text="${p1.getSesija()}"></th:block></td>
+            <td class="teor_prak"><th:block th:text="${p1.getTeorijaPrakticno()}"></th:block></td>
+            <td class="nacin"><th:block th:text="${p1.getOnline()}"></th:block></td>
+            <td class="osvoeni_poeni"><th:block th:text="${p1.getOsvoeniPoeni()}"></th:block></td>
+            <!--<td><i class='far fa-circle empty_icon'></i></td>-->
+            <td class="pol_polozen"><th:block th:text="${p1.getPolozen()}"></th:block></td>
+        </tr>
         <tr>
             <td>Минати</td>
-            <td>04.02.2021</td>
-            <td>Компјутерски Мрежи и Безбедност</td>
-            <td>Јануарска</td>
-            <td>Теорија</td>
-            <td>Online</td>
-            <td>59</td>
-            <td><i class='fas fa-check-circle check_icon'></i></td>
         </tr>
-        <tr>
+        <tr th:each="p2 : ${minatiPolaganja}">
             <td></td>
-            <td>28.01.2021</td>
-            <td>Оперативни Системи</td>
-            <td>Јануарска</td>
-            <td>Задачи</td>
-            <td>Online</td>
-            <td>37</td>
-            <td><i class='fas fa-times-circle cross_icon'></i></td>
+            <td><th:block th:text="${p2.getDatumPolaganje().toString()}"></th:block></td>
+            <td><th:block th:text="${p2.getPredmet().getPredmetFinki().getIme()}"></th:block></td>
+            <td class="td_sesija"><th:block th:text="${p2.getSesija()}"></th:block></td>
+            <td class="teor_prak"><th:block th:text="${p2.getTeorijaPrakticno()}"></th:block></td>
+            <td class="nacin"><th:block th:text="${p2.getOnline()}"></th:block></td>
+            <td class="osvoeni_poeni"><th:block th:text="${p2.getOsvoeniPoeni()}"></th:block></td>
+            <!--<td><i class='far fa-circle empty_icon'></i></td>-->
+            <td class="pol_polozen"><th:block th:text="${p2.getPolozen()}"></th:block></td>
         </tr>
+
         </tbody>
     </table>
+
 </section>
 
 </body>

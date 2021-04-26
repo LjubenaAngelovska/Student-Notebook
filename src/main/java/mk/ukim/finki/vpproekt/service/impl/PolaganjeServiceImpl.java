@@ -1,11 +1,8 @@
 package mk.ukim.finki.vpproekt.service.impl;
 
-import mk.ukim.finki.vpproekt.model.Polaganje;
-import mk.ukim.finki.vpproekt.model.Predmet;
-import mk.ukim.finki.vpproekt.model.Predmet_Finki;
-import mk.ukim.finki.vpproekt.model.Sesija;
-import mk.ukim.finki.vpproekt.repository.jpa.PolaganjeRepositoryJpa;
-import mk.ukim.finki.vpproekt.repository.jpa.PredmetFinkiRepositoryJpa;
+import mk.ukim.finki.vpproekt.model.*;
+import mk.ukim.finki.vpproekt.model.exceptions.PredmetNotFoundException;
+import mk.ukim.finki.vpproekt.repository.jpa.*;
 import mk.ukim.finki.vpproekt.service.PolaganjeService;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +14,17 @@ import java.util.Optional;
 public class PolaganjeServiceImpl implements PolaganjeService {
 
     private final PolaganjeRepositoryJpa polaganjeRepositoryJpa;
+    private final StudentRepositoryJpa studentRepositoryJpa;
+    private final PredmetRepositoryJpa predmetRepositoryJpa;
     private final PredmetFinkiRepositoryJpa predmetFinkiRepositoryJpa;
+    private final SesijaRepositoryJpa sesijaRepositoryJpa;
 
-    public PolaganjeServiceImpl(PolaganjeRepositoryJpa polaganjeRepositoryJpa, PredmetFinkiRepositoryJpa predmetFinkiRepositoryJpa) {
+    public PolaganjeServiceImpl(PolaganjeRepositoryJpa polaganjeRepositoryJpa, StudentRepositoryJpa studentRepositoryJpa, PredmetRepositoryJpa predmetRepositoryJpa, PredmetFinkiRepositoryJpa predmetFinkiRepositoryJpa, SesijaRepositoryJpa sesijaRepositoryJpa) {
         this.polaganjeRepositoryJpa = polaganjeRepositoryJpa;
+        this.studentRepositoryJpa = studentRepositoryJpa;
+        this.predmetRepositoryJpa = predmetRepositoryJpa;
         this.predmetFinkiRepositoryJpa = predmetFinkiRepositoryJpa;
+        this.sesijaRepositoryJpa = sesijaRepositoryJpa;
     }
 
     @Override
@@ -30,17 +33,31 @@ public class PolaganjeServiceImpl implements PolaganjeService {
     }
 
     @Override
-    public Optional<Polaganje> save(String predmet_ime, Date datumPolaganje, String sesija, char teorijaPrakticno, char online, char polozen, double osvoeniPoeni) {
+    public Optional<Polaganje> save(Long predmet_id, Date datumPolaganje, Long sesijaId, char teorijaPrakticno, char online, char polozen, double osvoeniPoeni) {
 
-        Optional<Predmet_Finki> predmet = this.predmetFinkiRepositoryJpa.findPredmet_FinkiByIme(predmet_ime);
 
-        if (predmet.isEmpty()) {
-            // exception
-        } else {
 
-        }
-        return null;
+        Student student = this.studentRepositoryJpa.findStudentById(1L);
 
+        Predmet predmet = this.predmetRepositoryJpa.findPredmetById(predmet_id);
+
+        Sesija sesija = this.sesijaRepositoryJpa.findSesijaById(sesijaId);
+
+        Polaganje polaganje = new Polaganje(predmet, sesija, datumPolaganje, online, polozen, osvoeniPoeni, teorijaPrakticno);
+        this.polaganjeRepositoryJpa.save(polaganje);
+
+        return Optional.of(polaganje);
+
+    }
+
+    @Override
+    public List<Polaganje> findAllByDatumPolaganjeBefore(Date date) {
+        return this.polaganjeRepositoryJpa.findAllByDatumPolaganjeBefore(date);
+    }
+
+    @Override
+    public List<Polaganje> findAllByDatumPolaganjeAfter(Date date) {
+        return this.polaganjeRepositoryJpa.findAllByDatumPolaganjeAfter(date);
     }
 
     @Override

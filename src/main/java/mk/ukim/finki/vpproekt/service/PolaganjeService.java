@@ -12,7 +12,11 @@ public interface PolaganjeService {
 
     List<Polaganje> listAll();
 
-    Optional<Polaganje> save(String predmet_ime, Date datumPolaganje, String sesija, char teorijaPrakticno, char online, char polozen, double osvoeniPoeni);
+    Optional<Polaganje> save(Long predmet_id, Date datumPolaganje, Long sesijaId, char teorijaPrakticno, char online, char polozen, double osvoeniPoeni);
+
+    List<Polaganje> findAllByDatumPolaganjeBefore(Date date);
+
+    List<Polaganje> findAllByDatumPolaganjeAfter(Date date);
 
     Polaganje findPolaganjeById(Long id);
 

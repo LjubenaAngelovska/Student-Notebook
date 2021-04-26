@@ -2,13 +2,14 @@ package mk.ukim.finki.vpproekt.web.controllers;
 
 import mk.ukim.finki.vpproekt.model.Polaganje;
 import mk.ukim.finki.vpproekt.model.Predmet;
+import mk.ukim.finki.vpproekt.model.Sesija;
 import mk.ukim.finki.vpproekt.service.PolaganjeService;
 import mk.ukim.finki.vpproekt.service.PredmetService;
+import mk.ukim.finki.vpproekt.service.SesijaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
@@ -21,10 +22,12 @@ public class StudentController {
 
     private final PredmetService predmetService;
     private final PolaganjeService polaganjeService;
+    private final SesijaService sesijaService;
 
-    public StudentController(PredmetService predmetService, PolaganjeService polaganjeService) {
+    public StudentController(PredmetService predmetService, PolaganjeService polaganjeService, SesijaService sesijaService) {
         this.predmetService = predmetService;
         this.polaganjeService = polaganjeService;
+        this.sesijaService = sesijaService;
     }
 
     @GetMapping
@@ -42,6 +45,19 @@ public class StudentController {
 
         List<Polaganje> polaganja = this.polaganjeService.listAll();
         model.addAttribute("polaganja", polaganja);
+
+        List<Predmet> predmeti = this.predmetService.listAll();
+        model.addAttribute("predmeti", predmeti);
+
+        List<Sesija> sesii =  this.sesijaService.listAll();
+        model.addAttribute("sesii", sesii);
+
+        java.sql.Date today = new java.sql.Date(System.currentTimeMillis());
+
+        List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today);
+        List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today);
+        model.addAttribute("minatiPolaganja", minatiPolaganja);
+        model.addAttribute("idniPolaganja", idniPolaganja);
 
         return "polaganja-page";
     }
@@ -96,22 +112,17 @@ public class StudentController {
 
 
     @PostMapping("/addPolaganje")
-    public String savePolaganje(@RequestParam String predmet_polag,
+    public String savePolaganje(@RequestParam Long predmet_polag,
                               @RequestParam Date date_polag,
-                              @RequestParam String ses_polag,
+                              @RequestParam Long ses_polag,
                               @RequestParam char tip_polag,
                               @RequestParam char nacin_polag,
                               @RequestParam char polozen_cb,
                               @RequestParam double poeni_inp) {
 
         this.polaganjeService.save(predmet_polag, date_polag, ses_polag, tip_polag, nacin_polag, polozen_cb, poeni_inp);
-        return "redirect:/studentController/predmetiPage";
+        return "redirect:/studentController/polaganjaPage";
     }
-
-
-
-
-
 
     @RequestMapping(value = "/sortiraj", method = RequestMethod.GET)
     public String sortiraj(Model model, @RequestParam("sortby") String sortby) {
@@ -168,6 +179,123 @@ public class StudentController {
         }
         return "predmeti-page";
     }
+
+    @RequestMapping(value = "/sortirajPolaganja", method = RequestMethod.GET)
+    public String sortirajPolaganja(Model model, @RequestParam("sortby") String sortby) {
+
+        java.sql.Date today = new java.sql.Date(System.currentTimeMillis());
+
+        switch (sortby) {
+            case "1": {
+                List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getDatumPolaganje).reversed())
+                        .collect(Collectors.toList());
+                model.addAttribute("idniPolaganja", idniPolaganja);
+
+                List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getDatumPolaganje).reversed())
+                        .collect(Collectors.toList());
+                model.addAttribute("minatiPolaganja", minatiPolaganja);
+
+                break;
+            }
+            case "2": {
+                List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today)
+                        .stream()
+                        .sorted(Comparator.comparing(p -> p.getPredmet().getPredmetFinki().getIme()))
+                        .collect(Collectors.toList());
+                model.addAttribute("idniPolaganja", idniPolaganja);
+
+                List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today)
+                        .stream()
+                        .sorted(Comparator.comparing(p -> p.getPredmet().getPredmetFinki().getIme()))
+                        .collect(Collectors.toList());
+                model.addAttribute("minatiPolaganja", minatiPolaganja);
+
+                break;
+            }
+            case "3": {
+                List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today)
+                        .stream()
+                        .sorted(Comparator.comparing(p -> p.getSesija().getDatumOd()))
+                        .collect(Collectors.toList());
+                model.addAttribute("idniPolaganja", idniPolaganja);
+
+                List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today)
+                        .stream()
+                        .sorted(Comparator.comparing(p -> p.getSesija().getDatumOd()))
+                        .collect(Collectors.toList());
+                model.addAttribute("minatiPolaganja", minatiPolaganja);
+
+                break;
+            }
+            case "4": {
+                List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getTeorijaPrakticno))
+                        .collect(Collectors.toList());
+                model.addAttribute("idniPolaganja", idniPolaganja);
+
+                List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getTeorijaPrakticno))
+                        .collect(Collectors.toList());
+                model.addAttribute("minatiPolaganja", minatiPolaganja);
+
+                break;
+            }
+            case "5": {
+                List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getOnline))
+                        .collect(Collectors.toList());
+                model.addAttribute("idniPolaganja", idniPolaganja);
+
+                List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getOnline))
+                        .collect(Collectors.toList());
+                model.addAttribute("minatiPolaganja", minatiPolaganja);
+
+                break;
+            }
+            case "6": {
+                List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getOsvoeniPoeni))
+                        .collect(Collectors.toList());
+                model.addAttribute("idniPolaganja", idniPolaganja);
+
+                List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getOsvoeniPoeni))
+                        .collect(Collectors.toList());
+                model.addAttribute("minatiPolaganja", minatiPolaganja);
+
+                break;
+            }
+            case "7": {
+                List<Polaganje> idniPolaganja = this.polaganjeService.findAllByDatumPolaganjeAfter(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getPolozen))
+                        .collect(Collectors.toList());
+                model.addAttribute("idniPolaganja", idniPolaganja);
+
+                List<Polaganje> minatiPolaganja = this.polaganjeService.findAllByDatumPolaganjeBefore(today)
+                        .stream()
+                        .sorted(Comparator.comparing(Polaganje::getPolozen))
+                        .collect(Collectors.toList());
+                model.addAttribute("minatiPolaganja", minatiPolaganja);
+
+                break;
+            }
+        }
+
+        return "polaganja-page";
+    }
+
 
 
 }

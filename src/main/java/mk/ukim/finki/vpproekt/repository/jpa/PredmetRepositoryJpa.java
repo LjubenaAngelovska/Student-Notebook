@@ -1,6 +1,7 @@
 package mk.ukim.finki.vpproekt.repository.jpa;
 
 import mk.ukim.finki.vpproekt.model.Predmet;
+import mk.ukim.finki.vpproekt.model.Predmet_Finki;
 import mk.ukim.finki.vpproekt.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,8 @@ import java.util.List;
 public interface PredmetRepositoryJpa extends JpaRepository<Predmet, Long> {
 
     Predmet findPredmetById(Long id);
+
+    Predmet findPredmetByPredmetFinki(Predmet_Finki predmetFinki);
 
     List<Predmet> findAllByStudent(Student student);
 
