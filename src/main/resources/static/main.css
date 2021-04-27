@@ -33,6 +33,10 @@ input[type="number"] {
     font-size: small;
 }
 
+button {
+    cursor: pointer;
+}
+
 .logo-div {
     display: inline;
     padding-right: 5em;
@@ -47,6 +51,7 @@ input[type="number"] {
     list-style-type: none;
     padding: 0;
     display: inline;
+    margin-left: 6em;
 }
 
 .ul-header li {
@@ -67,7 +72,7 @@ input[type="number"] {
 }
 
 .last-li {
-    margin-left: 100px;
+    margin-left: 300px;
 }
 
 .ul-header li:hover {

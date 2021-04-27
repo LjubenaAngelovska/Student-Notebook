@@ -16,10 +16,8 @@
         <img src="../images/logo.png" alt="logo" class="logo">
     </div>
     <ul class="ul-header">
-        <li><a href="/studentController">КАЛЕНДАР</a></li>
         <li><a href="/studentController/polaganjaPage">ПОЛАГАЊА</a></li>
         <li><a href="/studentController/predmetiPage">ПРЕДМЕТИ</a></li>
-        <li><a href="/studentController/rasporedPage">РАСПОРЕД</a></li>
         <li class="last-li"><a href="/studentController/mojProfilPage">МОЈ ПРОФИЛ</a></li>
     </ul>
 </header>
@@ -193,10 +191,7 @@
                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                     <form th:action="@{'/studentController/deletePolaganje/{id}' (id=${p2.getId()})}"
                           th:method="DELETE">
-                        <button type="submit"
-                                class="btn btn-sm btn-danger delete-product">
-                            <i class="fa fa-trash">Избриши</i>
-                        </button>
+                        <button type="submit" class="btn btn-danger">Избриши</button>
                     </form>
                 </th:block>
             </td>

@@ -43,7 +43,7 @@ public class StudentController {
         List<Predmet> predmeti = this.predmetService.listAll();
         model.addAttribute("predmeti", predmeti);
 
-        return "home-page";
+        return "predmeti-page";
     }
 
     @GetMapping("/access_denied")
@@ -51,6 +51,14 @@ public class StudentController {
         return "access_denied";
     }
 
+    @GetMapping("/predmetiPage")
+    public String getPredmetiPage(@RequestParam(required = false) String error, Model model) {
+
+        List<Predmet> predmeti = this.predmetService.listAll();
+        model.addAttribute("predmeti", predmeti);
+
+        return "predmeti-page";
+    }
 
     @GetMapping("/polaganjaPage")
     public String getPolaganjaPage(@RequestParam(required = false) String error, Model model) {
@@ -74,20 +82,10 @@ public class StudentController {
         return "polaganja-page";
     }
 
-
-    @GetMapping("/predmetiPage")
-    public String getPredmetiPage(@RequestParam(required = false) String error, Model model) {
-
-        List<Predmet> predmeti = this.predmetService.listAll();
-        model.addAttribute("predmeti", predmeti);
-
-        return "predmeti-page";
-    }
-
-    @GetMapping("/rasporedPage")
+/*    @GetMapping("/rasporedPage")
     public String getRasporedPage(@RequestParam(required = false) String error, Model model) {
         return "raspored-page";
-    }
+    }*/
 
     @GetMapping("/mojProfilPage")
     public String getMojProfilPage(@RequestParam(required = false) String error, HttpServletRequest req, Model model) {
@@ -313,17 +311,6 @@ public class StudentController {
         return "polaganja-page";
     }
 
-
-
-/*    @GetMapping("/studentRegister")
-    public String getRegisterStudentPage(@RequestParam(required = false) String error, Model model) {
-        if(error != null && !error.isEmpty()) {
-            model.addAttribute("hasError", true);
-            model.addAttribute("error", error);
-        }
-        return "register-student";
-    }*/
-
     @PostMapping("/registerStudent")
     public String registerStudent(@RequestParam String username,
                                   @RequestParam String embg,
@@ -337,7 +324,6 @@ public class StudentController {
                                   @RequestParam char redovenVonreden,
                                   @RequestParam String smer) {
         try{
-            //Student student = this.studentService.getActiveStudent(username);
             this.studentService.update(username, embg, brojIndeks, ime, prezime, grad, datumZapisuvanje, email, telefon, redovenVonreden, smer);
             return "redirect:/login";
 
