@@ -3,13 +3,16 @@ package mk.ukim.finki.vpproekt.web.controllers;
 import mk.ukim.finki.vpproekt.model.Polaganje;
 import mk.ukim.finki.vpproekt.model.Predmet;
 import mk.ukim.finki.vpproekt.model.Sesija;
+import mk.ukim.finki.vpproekt.model.Student;
 import mk.ukim.finki.vpproekt.service.PolaganjeService;
 import mk.ukim.finki.vpproekt.service.PredmetService;
 import mk.ukim.finki.vpproekt.service.SesijaService;
+import mk.ukim.finki.vpproekt.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
@@ -17,17 +20,19 @@ import java.util.stream.Collectors;
 
 
 @Controller
-@RequestMapping("/studentController")
+@RequestMapping(value = {"/", "/studentController"})
 public class StudentController {
 
     private final PredmetService predmetService;
     private final PolaganjeService polaganjeService;
     private final SesijaService sesijaService;
+    private final StudentService studentService;
 
-    public StudentController(PredmetService predmetService, PolaganjeService polaganjeService, SesijaService sesijaService) {
+    public StudentController(PredmetService predmetService, PolaganjeService polaganjeService, SesijaService sesijaService, StudentService studentService) {
         this.predmetService = predmetService;
         this.polaganjeService = polaganjeService;
         this.sesijaService = sesijaService;
+        this.studentService = studentService;
     }
 
     @GetMapping
@@ -37,6 +42,11 @@ public class StudentController {
         model.addAttribute("predmeti", predmeti);
 
         return "home-page";
+    }
+
+    @GetMapping("/access_denied")
+    public String getAccessDeniedPage(Model model) {
+        return "access_denied";
     }
 
 
@@ -78,7 +88,12 @@ public class StudentController {
     }
 
     @GetMapping("/mojProfilPage")
-    public String getMojProfilPage(@RequestParam(required = false) String error, Model model) {
+    public String getMojProfilPage(@RequestParam(required = false) String error, HttpServletRequest req, Model model) {
+
+        String username = req.getRemoteUser();
+        Student student = this.studentService.getActiveStudent(username);
+        model.addAttribute("student", student);
+
         return "mojprofil-page";
     }
 

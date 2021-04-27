@@ -22,7 +22,122 @@
     </ul>
 </header>
 
-Moj profil
+<div>
+    <h2>
+        Лични податоци
+    </h2>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>Име и презиме</th>
+            <th>Број на индекс</th>
+            <th>ЕМБГ</th>
+            <th>Смер</th>
+            <th>Датум на запишување</th>
+            <th>Редовен/вонреден</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Град</th>
+        </tr>
+        <tr>
+            <td th:if="${student.getIme()} == null">
+                <label> Име
+                    <input type="text" id="ime" name="ime"
+                           placeholder="Име" class="form-control mb-4 col-4">
+                </label><br/>
+                <label> Презиме
+                    <input type="text" id="prezime" name="prezime"
+                           placeholder="Презиме" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getIme()} != null"
+                th:text="${student.getIme()} + ' ' + ${student.getPrezime()}">
+            </td>
+
+            <td th:if="${student.getBrojIndeks()} == null">
+                <label> Индекс
+                    <input type="text" id="indeks" name="indeks"
+                           placeholder="Индекс" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getBrojIndeks()} != null"
+                th:text="${student.getBrojIndeks()}">
+            </td>
+
+            <td th:if="${student.getEmbg()} == null">
+                <label> ЕМБГ
+                    <input type="text" id="embg" name="embg"
+                           placeholder="ЕМБГ" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getEmbg()} != null"
+                th:text="${student.getEmbg()}">
+            </td>
+
+            <td th:if="${student.getSmer()} == null">
+                <label> Смер
+                    <input type="text" id="smer" name="smer"
+                           placeholder="Смер" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getSmer()} != null"
+                th:text="${student.getSmer()}">
+            </td>
+
+            <td th:if="${student.getDatumZapisuvanje()} == null">
+                <label> Датум на запишување
+                    <input type="date" id="datumZapisuvanje" name="datumZapisuvanje"
+                           placeholder="Датум на запишување" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getDatumZapisuvanje()} != null"
+                th:text="${student.getDatumZapisuvanje()}">
+            </td>
+
+            <td th:if="${student.getRedovenVonreden()} == 'x'">
+                <input type="radio" id="redoven" value="r" name="redovenVonreden" class="form-control">
+                <label for="redoven" class="sr-only">Редовен</label>
+                <input type="radio" id="vonreden" value="v" name="redovenVonreden" class="form-control">
+                <label for="vonreden" class="sr-only">Вонреден</label>
+            </td>
+            <td th:if="${student.getRedovenVonreden()} != 'x'"
+                th:text="${student.getRedovenVonreden()}">
+            </td>
+
+            <td th:if="${student.getEmail()} == null">
+                <label> Email
+                    <input type="text" id="email" name="email"
+                           placeholder="Email" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getEmail()} != null"
+                th:text="${student.getEmail()}">
+            </td>
+
+            <td th:if="${student.getTelefon()} == null">
+                <label> Телефон
+                    <input type="text" id="telefon" name="telefon"
+                           placeholder="Телефон" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getTelefon()} != null"
+                th:text="${student.getTelefon()}">
+            </td>
+
+            <td th:if="${student} == null">
+                <label> Град
+                    <input type="text" id="grad" name="grad"
+                           placeholder="Град" class="form-control mb-4 col-4">
+                </label>
+            </td>
+            <td th:if="${student.getGrad()} != null"
+                th:text="${student.getGrad()}">
+            </td>
+
+        </tr>
+    </table>
+</div>
 
 </body>
 </html>

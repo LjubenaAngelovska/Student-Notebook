@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/main.css}"/>
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/sn-logopng.png}"/>
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+
+<header>
+    <div class="logo-div">
+        <img src="../images/logo.png" alt="logo" class="logo">
+    </div>
+    <ul class="ul-header">
+        <li><a href="/studentController">КАЛЕНДАР</a></li>
+        <li><a href="/studentController/polaganjaPage">ПОЛАГАЊА</a></li>
+        <li><a href="/studentController/predmetiPage">ПРЕДМЕТИ</a></li>
+        <li><a href="/studentController/rasporedPage">РАСПОРЕД</a></li>
+        <li class="last-li"><a href="/studentController/mojProfilPage">МОЈ ПРОФИЛ</a></li>
+    </ul>
+</header>
+
+<div class="container" xmlns:th="http://www.thymeleaf.org">
+    <form class="form-signin mt-xl-5" method="post" action="/login">
+        <h2 class="form-signin-heading">Sign in</h2>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                   required="">
+        </p>
+
+        <div th:text="${param.error}" class="text-danger"></div>
+
+        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <a href="/register" class="btn btn-block btn-light">Register here</a>
+</div>
+</body>
+</html>

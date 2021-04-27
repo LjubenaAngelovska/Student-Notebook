@@ -41,10 +41,17 @@ public class Student {
     @Column(length = 100)
     private String smer;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "student_user",
+            joinColumns = { @JoinColumn(name = "student_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "username") })
+    private User user;
+
 
     public Student() {
 
     }
+
 
     public Student(String embg, String brojIndeks, String ime, String prezime, String grad, Date datumZapisuvanje, String email, String telefon, char redovenVonreden, String smer) {
         this.embg = embg;
