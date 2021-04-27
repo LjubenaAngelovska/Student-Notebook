@@ -16,7 +16,8 @@
     <ul class="ul-header">
         <li><a href="/studentController/polaganjaPage">ПОЛАГАЊА</a></li>
         <li><a href="/studentController/predmetiPage">ПРЕДМЕТИ</a></li>
-        <li class="last-li"><a href="/studentController/mojProfilPage">МОЈ ПРОФИЛ</a></li>
+        <li style="margin-left: 10em;"><a href="/studentController/mojProfilPage">МОЈ ПРОФИЛ</a></li>
+        <li class="last-li"><a href="/logout">Log out</a></li>
     </ul>
 </header>
 
@@ -112,14 +113,15 @@
 
     <div>
         <div th:if="${student.getRedovenVonreden()} == 'x'">
-            <input type="radio" id="redoven" value="r" name="redovenVonreden" class="form-control">
+            <input type="radio" id="redoven" value="r" name="redovenVonreden">
             <label for="redoven">Редовен</label>
-            <input type="radio" id="vonreden" value="v" name="redovenVonreden" class="form-control">
+            <input type="radio" id="vonreden" value="v" name="redovenVonreden">
             <label for="vonreden">Вонреден</label>
         </div>
-        <div th:if="${student.getRedovenVonreden()} != 'x'"
-            th:text="${'Вонреден/редовен: ' + student.getRedovenVonreden()}">
-        </div>
+            <div th:if="${student.getRedovenVonreden()} != 'x'">
+                <div th:if="${student.getRedovenVonreden} == 'r'" th:text="'Вонреден/редовен: редовен'"></div>
+                <div th:if="${student.getRedovenVonreden} == 'v'" th:text="'Вонреден/редовен: вонреден'"></div>
+            </div>
     </div>
 
     <div>

@@ -82,11 +82,6 @@ public class StudentController {
         return "polaganja-page";
     }
 
-/*    @GetMapping("/rasporedPage")
-    public String getRasporedPage(@RequestParam(required = false) String error, Model model) {
-        return "raspored-page";
-    }*/
-
     @GetMapping("/mojProfilPage")
     public String getMojProfilPage(@RequestParam(required = false) String error, HttpServletRequest req, Model model) {
 
@@ -325,7 +320,7 @@ public class StudentController {
                                   @RequestParam String smer) {
         try{
             this.studentService.update(username, embg, brojIndeks, ime, prezime, grad, datumZapisuvanje, email, telefon, redovenVonreden, smer);
-            return "redirect:/login";
+            return "redirect:/predmetiPage";
 
         } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
             return "redirect:/register?error=" + exception.getMessage();

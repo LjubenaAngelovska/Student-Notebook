@@ -72,7 +72,8 @@ button {
 }
 
 .last-li {
-    margin-left: 300px;
+    margin-left: 10px;
+    background-color: transparent !important;
 }
 
 .ul-header li:hover {
@@ -610,7 +611,7 @@ input::-moz-focus-outer {
 
 /* End of CSS za slider */
 
-#nov_predmet_span {
+#nov_predmet_span, #novo_polaganje_span {
     font-size: 1.5em;
     top: 1em;
     position: absolute;
@@ -693,6 +694,26 @@ input::-moz-focus-outer {
 
 .mojProfilDiv > div {
     padding: 0.7em;
-    text-align: right;
+    text-align: left;
     display: block;
+}
+
+.containerRegister {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.containerRegister > div {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.form-control {
+    float: right;
+    margin-left: 0.7em;
 }

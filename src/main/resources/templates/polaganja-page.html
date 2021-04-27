@@ -18,13 +18,14 @@
     <ul class="ul-header">
         <li><a href="/studentController/polaganjaPage">ПОЛАГАЊА</a></li>
         <li><a href="/studentController/predmetiPage">ПРЕДМЕТИ</a></li>
-        <li class="last-li"><a href="/studentController/mojProfilPage">МОЈ ПРОФИЛ</a></li>
+        <li style="margin-left: 10em;"><a href="/studentController/mojProfilPage">МОЈ ПРОФИЛ</a></li>
+        <li class="last-li"><a href="/logout">Log out</a></li>
     </ul>
 </header>
 
 <form action="/studentController/addPolaganje" method="POST">
     <div id="myNav" class="overlay">
-        <span id="novo_polaganje_span">Нов Предмет</span>
+        <span id="novo_polaganje_span">Ново Полагање</span>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
 
@@ -73,11 +74,6 @@
                     </select>
                 </label>
             </div>
-            <!--
-                        <div class="temp2" style="position: relative">
-                            <input type="checkbox" id="polozen_cb" name="polozen_cb">
-                            <label for="polozen_cb">Положен</label>
-                        </div>-->
 
             <div class="temp2" style="position: absolute; width: 12em">
                 <label for="polozen_cb">
@@ -95,7 +91,6 @@
             </div>
 
             <div class="divbtn_dodadi_polaganje">
-                <!--<button id="vnesi_nov_predmet" class="vnesi_button" onclick="">Внеси Предмет</button>-->
                 <input type="submit" value="Внеси полагање" class="vnesi_button"/>
             </div>
 
@@ -166,10 +161,7 @@
                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                     <form th:action="@{'/studentController/deletePolaganje/{id}' (id=${p1.getId()})}"
                           th:method="DELETE">
-                        <button type="submit"
-                                class="btn btn-sm btn-danger delete-product">
-                            <i class="fa fa-trash">Избриши</i>
-                        </button>
+                        <button type="submit" class="btn btn-danger">Избриши</button>
                     </form>
                 </th:block>
             </td>
