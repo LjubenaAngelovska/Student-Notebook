@@ -47,33 +47,5 @@ public class RegisterController {
             return "redirect:/register?error=" + exception.getMessage();
         }
     }
-/*
-    @GetMapping("/studentRegister")
-    public String getRegisterStudentPage(@RequestParam(required = false) String error, Model model) {
-        if(error != null && !error.isEmpty()) {
-            model.addAttribute("hasError", true);
-            model.addAttribute("error", error);
-        }
-        return "register-student";
-    }
 
-    @PostMapping("/registerStudent")
-    public String registerStudent(@RequestParam String embg,
-                                  @RequestParam String brojIndeks,
-                                  @RequestParam String ime,
-                                  @RequestParam String prezime,
-                                  @RequestParam String grad,
-                                  @RequestParam Date datumZapisuvanje,
-                                  @RequestParam String email,
-                                  @RequestParam String telefon,
-                                  @RequestParam char redovenVonreden,
-                                  @RequestParam String smer) {
-        try{
-            this.studentService.save(embg, brojIndeks, ime, prezime, grad, datumZapisuvanje, email, telefon, redovenVonreden, smer);
-            return "redirect:/login";
-
-        } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
-            return "redirect:/register?error=" + exception.getMessage();
-        }
-    }*/
 }

@@ -13,4 +13,6 @@ public interface StudentService {
     Optional<Student> save(String embg, String brojIndeks, String ime, String prezime, String grad, Date datumZapisuvanje, String email, String telefon, char redovenVonreden, String smer);
 
     Student getActiveStudent(String username);
+
+    Optional<Student> update (String username, String embg, String brojIndeks, String ime, String prezime, String grad, Date datumZapisuvanje, String email, String telefon, char redovenVonreden, String smer);
 }

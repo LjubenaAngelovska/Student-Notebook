@@ -53,4 +53,27 @@ public class StudentServiceImpl implements StudentService {
                     return this.studentRepositoryJpa.save(student);
                 });
     }
+
+    @Override
+    public Optional<Student> update(String username, String embg, String brojIndeks, String ime, String prezime, String grad, Date datumZapisuvanje, String email, String telefon, char redovenVonreden, String smer) {
+
+        User user = this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(username));
+
+        Student student = this.studentRepositoryJpa.findByUser(user)
+                .orElseThrow(() -> new UserNotFoundException(username));
+
+        student.setEmbg(embg);
+        student.setBrojIndeks(brojIndeks);
+        student.setIme(ime);
+        student.setPrezime(prezime);
+        student.setGrad(grad);
+        student.setDatumZapisuvanje(datumZapisuvanje);
+        student.setEmail(email);
+        student.setTelefon(telefon);
+        student.setRedovenVonreden(redovenVonreden);
+        student.setSmer(smer);
+
+        return Optional.of(this.studentRepositoryJpa.save(student));
+    }
 }

@@ -4,6 +4,8 @@ import mk.ukim.finki.vpproekt.model.Polaganje;
 import mk.ukim.finki.vpproekt.model.Predmet;
 import mk.ukim.finki.vpproekt.model.Sesija;
 import mk.ukim.finki.vpproekt.model.Student;
+import mk.ukim.finki.vpproekt.model.exceptions.InvalidArgumentsException;
+import mk.ukim.finki.vpproekt.model.exceptions.PasswordsDoNotMatchException;
 import mk.ukim.finki.vpproekt.service.PolaganjeService;
 import mk.ukim.finki.vpproekt.service.PredmetService;
 import mk.ukim.finki.vpproekt.service.SesijaService;
@@ -312,5 +314,36 @@ public class StudentController {
     }
 
 
+
+/*    @GetMapping("/studentRegister")
+    public String getRegisterStudentPage(@RequestParam(required = false) String error, Model model) {
+        if(error != null && !error.isEmpty()) {
+            model.addAttribute("hasError", true);
+            model.addAttribute("error", error);
+        }
+        return "register-student";
+    }*/
+
+    @PostMapping("/registerStudent")
+    public String registerStudent(@RequestParam String username,
+                                  @RequestParam String embg,
+                                  @RequestParam String brojIndeks,
+                                  @RequestParam String ime,
+                                  @RequestParam String prezime,
+                                  @RequestParam String grad,
+                                  @RequestParam Date datumZapisuvanje,
+                                  @RequestParam String email,
+                                  @RequestParam String telefon,
+                                  @RequestParam char redovenVonreden,
+                                  @RequestParam String smer) {
+        try{
+            //Student student = this.studentService.getActiveStudent(username);
+            this.studentService.update(username, embg, brojIndeks, ime, prezime, grad, datumZapisuvanje, email, telefon, redovenVonreden, smer);
+            return "redirect:/login";
+
+        } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
+            return "redirect:/register?error=" + exception.getMessage();
+        }
+    }
 
 }
