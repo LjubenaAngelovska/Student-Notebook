@@ -18,6 +18,8 @@ public interface PolaganjeService {
 
     List<Polaganje> findAllByDatumPolaganjeAfter(Date date);
 
+    void deleteById(Long id);
+
     Polaganje findPolaganjeById(Long id);
 
     List<Polaganje> findAllByPredmet(Predmet predmet);

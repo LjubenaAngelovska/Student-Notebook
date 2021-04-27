@@ -61,6 +61,11 @@ public class PolaganjeServiceImpl implements PolaganjeService {
     }
 
     @Override
+    public void deleteById(Long id) {
+        this.polaganjeRepositoryJpa.deleteById(id);
+    }
+
+    @Override
     public Polaganje findPolaganjeById(Long id) {
         return polaganjeRepositoryJpa.findPolaganjeById(id);
     }

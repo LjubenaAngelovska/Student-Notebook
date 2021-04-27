@@ -45,6 +45,11 @@ public class PredmetServiceImpl implements PredmetService {
     }
 
     @Override
+    public void deleteById(Long id) {
+        this.predmetRepositoryJpa.deleteById(id);
+    }
+
+    @Override
     public Predmet findPredmetById(Long id) {
         return predmetRepositoryJpa.findPredmetById(id);
     }

@@ -346,4 +346,16 @@ public class StudentController {
         }
     }
 
+    @DeleteMapping("/deletePredmet/{id}")
+    public String deletePredmet(@PathVariable Long id) {
+        this.predmetService.deleteById(id);
+        return "redirect:/predmetiPage";
+    }
+
+    @DeleteMapping("/deletePolaganje/{id}")
+    public String deletePolaganje(@PathVariable Long id) {
+        this.polaganjeService.deleteById(id);
+        return "redirect:/polaganjaPage";
+    }
+
 }

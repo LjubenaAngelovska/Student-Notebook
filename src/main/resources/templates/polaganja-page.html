@@ -164,6 +164,17 @@
             <td class="osvoeni_poeni"><th:block th:text="${p1.getOsvoeniPoeni()}"></th:block></td>
             <!--<td><i class='far fa-circle empty_icon'></i></td>-->
             <td class="pol_polozen"><th:block th:text="${p1.getPolozen()}"></th:block></td>
+            <td>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <form th:action="@{'/studentController/deletePolaganje/{id}' (id=${p1.getId()})}"
+                          th:method="DELETE">
+                        <button type="submit"
+                                class="btn btn-sm btn-danger delete-product">
+                            <i class="fa fa-trash">Избриши</i>
+                        </button>
+                    </form>
+                </th:block>
+            </td>
         </tr>
         <tr>
             <td>Минати</td>
@@ -178,6 +189,17 @@
             <td class="osvoeni_poeni"><th:block th:text="${p2.getOsvoeniPoeni()}"></th:block></td>
             <!--<td><i class='far fa-circle empty_icon'></i></td>-->
             <td class="pol_polozen"><th:block th:text="${p2.getPolozen()}"></th:block></td>
+            <td>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <form th:action="@{'/studentController/deletePolaganje/{id}' (id=${p2.getId()})}"
+                          th:method="DELETE">
+                        <button type="submit"
+                                class="btn btn-sm btn-danger delete-product">
+                            <i class="fa fa-trash">Избриши</i>
+                        </button>
+                    </form>
+                </th:block>
+            </td>
         </tr>
 
         </tbody>

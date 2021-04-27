@@ -13,6 +13,8 @@ public interface PredmetService {
 
     Optional<Predmet> save(String ime, String opis, String semestar, char zadolzitelen, char tekovnoZapisan, int kojPat, String semestarZapisan, char polozen, int ocenka);
 
+    void deleteById(Long id);
+
     Predmet findPredmetById(Long id);
 
     List<Predmet> findAllByStudent(Student student);

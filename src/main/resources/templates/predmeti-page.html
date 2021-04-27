@@ -181,16 +181,6 @@
                 <th></th>
             </tr>
         </form>
-        </thead>
-        <tbody>
-<!--        <tr>
-            <td>Компјутерски Мрежи и Безбедност</td>
-            <td>2</td>
-            <td>Задолжителен</td>
-            <td>7</td>
-            <td><i class='far fa-circle empty_icon'></i></td>
-            <td>Повеќе информации</td>
-        </tr>-->
 
         <tr th:each="predmet : ${predmeti}">
             <td><th:block th:text="${predmet.getPredmetFinki().getIme()}"></th:block></td>
@@ -199,10 +189,18 @@
             <td class="td_ocenka"><th:block th:text="${predmet.getOcenka()}"></th:block></td>
             <td class="td_polozen"><th:block th:text="${predmet.getPolozen()}"></th:block></td>
             <td><th:block th:text="${predmet.getSemestarZapisan()}"></th:block></td>
-            <td>Повеќе информации</td>
+            <td>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <form th:action="@{'/studentController/deletePredmet/{id}' (id=${predmet.getId()})}"
+                      th:method="DELETE">
+                    <button type="submit"
+                            class="btn btn-sm btn-danger delete-product">
+                        <i class="fa fa-trash">Delete</i>
+                    </button>
+                </form>
+                </th:block>
+            </td>
         </tr>
-
-        </tbody>
     </table>
 
 </section>
